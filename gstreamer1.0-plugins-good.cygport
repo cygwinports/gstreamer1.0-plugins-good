@@ -1,5 +1,12 @@
+GST_PLUGINS_ENABLE="aalib flac gdk_pixbuf jpeg libcaca libdv
+                    libpng oss pulse shout2 soup speex taglib vpx waveform
+                    wavpack ximagesrc"
+GST_PLUGINS_DISABLE="directsound dv1394 gst_v4l2 jack oss4 osx_audio osx_video
+                     sunaudio xvideo"
+inherit gst-plugins
+
 NAME="gstreamer1.0-plugins-good"
-VERSION=1.0.2
+VERSION=1.0.3
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Good Plug-ins collection"
@@ -7,12 +14,6 @@ DESCRIPTION="GStreamer Good Plug-ins is a set of plug-ins that are
 consider to have good quality code, correct functionality, and a
 preferred license (LGPL for the plug-in code, LGPL or LGPL-compatible
 for the supporting library)."
-GST_PLUGINS_ENABLE="aalib flac gdk_pixbuf jpeg libcaca libdv
-                    libpng oss pulse shout2 soup speex taglib vpx waveform
-                    wavpack ximagesrc"
-GST_PLUGINS_DISABLE="directsound dv1394 gst_v4l2 jack oss4
-                     osx_audio osx_video sunaudio xvideo"
-inherit gst-plugins
 
 PKG_NAMES="${PN}"
 PKG_HINTS="good"
@@ -46,5 +47,3 @@ gstreamer1_0_plugins_good_CONTENTS+=" usr/"
 
 gstreamer1_0_plugins_flac_REQUIRES="gstreamer1.0-plugins-ogg"
 gstreamer1_0_plugins_speex_REQUIRES="gstreamer1.0-plugins-ogg"
-
-KEEP_LA_FILES="none"
