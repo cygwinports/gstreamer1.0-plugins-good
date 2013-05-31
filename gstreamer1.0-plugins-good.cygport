@@ -5,7 +5,7 @@ GST_PLUGINS_DISABLE="dv1394 gst_v4l2 jack oss4 osx_audio osx_video sunaudio xvid
 inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-good"
-VERSION=1.0.5
+VERSION=1.0.7
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Good Plug-ins collection"
@@ -14,7 +14,7 @@ consider to have good quality code, correct functionality, and a
 preferred license (LGPL for the plug-in code, LGPL or LGPL-compatible
 for the supporting library)."
 
-PKG_NAMES="${PN}"
+PKG_NAMES="${NAME}"
 PKG_HINTS="good"
 
 for ext in ${GST_PLUGINS_ENABLE}
@@ -22,7 +22,7 @@ do
 	# sys/ plugins with no additional deps
 	case ${ext} in directsound|oss|waveform) continue ;; esac
 
-	PKG_NAMES+=" ${PN%-good}-${ext}"
+	PKG_NAMES+=" ${NAME%-good}-${ext}"
 	PKG_HINTS+=" ${ext}"
 	declare gstreamer1_0_plugins_${ext}_SUMMARY="GStreamer 1.0 ${ext} plugin"
 	case ${ext} in
