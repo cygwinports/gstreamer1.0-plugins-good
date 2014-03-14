@@ -1,11 +1,11 @@
-GST_PLUGINS_ENABLE="aalib directsound flac gdk_pixbuf jpeg libcaca libdv
+GST_PLUGINS_ENABLE="aalib cairo directsound flac gdk_pixbuf jpeg libcaca libdv
                     libpng oss pulse shout2 soup speex taglib vpx waveform
                     wavpack ximagesrc"
 GST_PLUGINS_DISABLE="dv1394 gst_v4l2 jack oss4 osx_audio osx_video sunaudio xvideo"
 inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-good"
-VERSION=1.0.10
+VERSION=1.2.3
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Good Plug-ins collection"
