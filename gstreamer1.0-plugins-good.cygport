@@ -5,8 +5,8 @@ GST_PLUGINS_DISABLE="dv1394 gst_v4l2 jack oss4 osx_audio osx_video sunaudio xvid
 inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-good"
-VERSION=1.4.5
-RELEASE=2
+VERSION=1.6.1
+RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Good Plug-ins collection"
 DESCRIPTION="GStreamer Good Plug-ins is a set of plug-ins that are
