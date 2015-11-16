@@ -6,7 +6,7 @@ inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-good"
 VERSION=1.4.5
-RELEASE=1
+RELEASE=2
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Good Plug-ins collection"
 DESCRIPTION="GStreamer Good Plug-ins is a set of plug-ins that are
@@ -14,34 +14,29 @@ consider to have good quality code, correct functionality, and a
 preferred license (LGPL for the plug-in code, LGPL or LGPL-compatible
 for the supporting library)."
 
-PKG_NAMES="${NAME} ${NAME}-doc"
+PKG_NAMES="${NAME} ${NAME}-extras ${NAME}-doc"
 
 for ext in ${GST_PLUGINS_ENABLE}
 do
-	# sys/ plugins with no additional deps
-	case ${ext} in directsound|oss|waveform) continue ;; esac
-
-	PKG_NAMES+=" ${NAME%-good}-${ext}"
-	declare gstreamer1_0_plugins_${ext}_SUMMARY="GStreamer 1.0 ${ext} plugin"
 	case ${ext} in
-	aalib|libcaca|libdv|libpng)
-		declare gstreamer1_0_plugins_${ext}_CONTENTS="${GST_PLUGINDIR#/}/*gst${ext/lib}*"
-		gstreamer1_0_plugins_good_CONTENTS+=" --exclude=*gst${ext/lib}*"
-		;;
-	gconf)
-		declare gstreamer1_0_plugins_${ext}_CONTENTS="etc/ ${GST_PLUGINDIR#/}/*gst${ext//_}*"
-		gstreamer1_0_plugins_good_CONTENTS+=" --exclude=*gst${ext//_}*"
-		;;
-	*)
-		declare gstreamer1_0_plugins_${ext}_CONTENTS="${GST_PLUGINDIR#/}/*gst${ext//_}*"
-		gstreamer1_0_plugins_good_CONTENTS+=" --exclude=*gst${ext//_}*"
-		;;
+	# no additional deps, were already in -good
+	directsound|oss|waveform) continue ;;
+	# obsoleted in -extras
+	aalib|libcaca) continue ;;
 	esac
+
+	gstreamer1_0_plugins_good_OBSOLETES+=" ${NAME%-good}-${ext}"
 done
 unset ext
 
-gstreamer1_0_plugins_good_CONTENTS+=" --exclude=gtk-doc usr/"
+gstreamer1_0_plugins_good_CONTENTS="--exclude=gtk-doc --exclude=*gstaa* --exclude=*gstcaca* usr/"
+gstreamer1_0_plugins_good_REQUIRES="gstreamer1.0-plugins-base"
+
+gstreamer1_0_plugins_good_extras_CONTENTS="
+	usr/lib/gstreamer-1.0/cyggstaasink.dll
+	usr/lib/gstreamer-1.0/cyggstcacasink.dll
+"
+gstreamer1_0_plugins_good_extras_OBSOLETES="${NAME%-good}-aalib ${NAME%-good}-libcaca"
+
 gstreamer1_0_plugins_good_doc_CATEGORY="Doc"
 gstreamer1_0_plugins_good_doc_CONTENTS="usr/share/gtk-doc/"
-gstreamer1_0_plugins_flac_REQUIRES="gstreamer1.0-plugins-ogg"
-gstreamer1_0_plugins_speex_REQUIRES="gstreamer1.0-plugins-ogg"
