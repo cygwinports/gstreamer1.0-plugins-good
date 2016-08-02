@@ -6,7 +6,7 @@ inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-good"
 VERSION=1.6.4
-RELEASE=1
+RELEASE=2
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Good Plug-ins collection"
 DESCRIPTION="GStreamer Good Plug-ins is a set of plug-ins that are
